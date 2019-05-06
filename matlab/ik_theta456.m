@@ -1,6 +1,7 @@
 % 逆运动学，求theta456
 % warning: ANNO的模型和puma其实是不一致的，因为零点不同
 %syms theta1 theta2 theta3 theta4 theta5 theta6;
+clear
 syms s1 c1 s2 c2 s3 c3 s4 c4 s5 c5 s6 c6
 
 %c1 = 0.5 
@@ -49,4 +50,10 @@ T56 = [c6 -s6 0;s6 c6 0;0 0 1];
 
 T01*T12*T23*T34*T45*T56
 T34*T45*T56
+T04 = T01*T12*T23
 inv(T01*T12*T23)
+%T06 = T01*T12*T23*[0 0 1;0 -1 0;1 0 0]*[1 0 0;0 c6 -s6;0 s6 c6]*[c5 0 s5;0 1 0;-s5 0 c5]*[c4 -s4 0;s4 c4 0;0 0 1]
+
+
+T06 = T01*T12*T23*[1 0 0;0 c6 -s6;0 s6 c6]*[c5 0 s5;0 1 0;-s5 0 c5]*[c4 -s4 0;s4 c4 0;0 0 1]
+
